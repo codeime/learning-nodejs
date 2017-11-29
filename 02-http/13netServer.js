@@ -1,7 +1,7 @@
 const net = require('net');
 net.createServer(conn => {
     conn.on('data', data => {
-        console.log(data);
-        conn.write('服务端收到客户端的发来的消息了');
+        console.log(data.toString());
+        conn.write('服务端的返回信息');
     })
 }).listen(3000);
