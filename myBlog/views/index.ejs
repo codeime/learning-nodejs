@@ -1,0 +1,10 @@
+<%- include('./public/header.ejs') %>
+
+    <ul>
+        <% for(let i=0;i<ls.length;i++){ %>
+            <li>
+                <%= ls[i] %>
+            </li>
+            <% } %>
+    </ul>
+    <%- include('./public/footer.ejs') %>
