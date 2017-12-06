@@ -10,8 +10,9 @@ const pkg = require('./package');
 const app = express();
 
 app.set('views', path.join(__dirname, "views"));
-app.set('view engine', 'ejs');
-app.engine('html', require('ejs').renderFile); //修改模版后缀为html
+app.engine('.html', require('ejs').renderFile); //修改模版后缀为html
+app.set('view engine', 'html');
+
 
 // 设置静态文件目录
 
@@ -34,6 +35,25 @@ app.use(session({
 
 /* flash中间件，用来显示通知 */
 app.use(flash());
+
+
+app.use(require('express-formidable')({
+    uploadDir: path.join(__dirname, 'public/img'),
+    keepExtensions: true
+}));
+
+app.locals.blog = {
+    title: pkg.name,
+    description: pkg.description
+}
+app.use((req, res, next) => {
+    res.locals.user = req.session.user;
+    res.locals.success = req.flash('success').toString();
+    res.locals.error = req.flash('erroe').toString();
+    next();
+})
+
+
 
 /* 路由 */
 

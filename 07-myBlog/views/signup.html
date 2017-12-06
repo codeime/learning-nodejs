@@ -1,0 +1,47 @@
+<%-include('./public/head.html')%>
+
+    </head>
+
+    <body>
+        <%-include('./public/nav.html')%>
+            <div class="container section" id="signinPage">
+                <form method="post" enctype="multipart/form-data">
+
+
+                    <div class="col-xs-8 col-sm-4 center-block">
+                        用户名：
+                        <p>
+                            <input type="text" name="name" value="" placeholder="输入用户名">
+                        </p>
+                        密码：
+                        <p>
+                            <input type="password" name="password" value="" placeholder="请输入密码">
+                        </p>
+                        确认密码：
+                        <p>
+                            <input type="password" name="password2" value="" placeholder="请再次输入密码">
+                        </p>
+                        性别：
+                        <p>
+                            <select name="sex">
+                                <option value="">男</option>
+                                <option value="">女</option>
+                            </select>
+                        </p>
+                        头像：
+                        <p>
+                            <input type="file" name="file" value="">
+                        </p>
+                        简介：
+                        <p>
+                            <textarea name="bio" rows="" cols=""></textarea>
+                        </p>
+                        <button type="submit center-block">注册</button>
+                    </div>
+                </form>
+            </div>
+            <!-- 当前页面的js引用 -->
+            <script type="text/javascript" src="js/"></script>
+            <!-- 当前页面的js -->
+
+            <%-include('./public/foot.html')%>
