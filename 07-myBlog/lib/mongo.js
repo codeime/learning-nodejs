@@ -7,20 +7,20 @@ mongolass.connect(config.mongodb);
 
 exports.User = mongolass.model('user', {
     name: {
-        type: 'String'
+        type: 'string'
     },
     password: {
-        type: 'String'
+        type: 'string'
     },
     avatar: {
-        type: 'String'
+        type: 'string'
     },
     gender: {
-        type: 'String',
+        type: 'string',
         enum: ['m', 'f', 'x']
     },
     bio: {
-        type: 'String'
+        type: 'string'
     }
 });
 exports.User.index({

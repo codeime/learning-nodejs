@@ -1,7 +1,3 @@
-import {
-    User
-} from '../lib/mongo';
-
 const fs = require('fs');
 const sha1 = require('sha1');
 const path = require('path');
@@ -22,6 +18,7 @@ router.post('/', checkNotLogin, (req, res, next) => {
     const filename = req.files.file.path.split(path.sep).pop();
 
     try {
+
         if (!(name.length >= 1 && name.length <= 10)) {
             throw new Error('用户名限制1-10个字符')
         }
@@ -32,7 +29,7 @@ router.post('/', checkNotLogin, (req, res, next) => {
             throw new Error('简介限制1-30个字符')
         }
 
-        if (!req.fields.file.name) {
+        if (!req.files.file.name) {
             throw new Error('没有上传头像')
         }
         if (psd1.length < 6) {
@@ -43,28 +40,34 @@ router.post('/', checkNotLogin, (req, res, next) => {
             throw new Error('两次密码不一致')
         }
     } catch (err) {
-        fs.unlink(req.fields.file.path);
+        console.log(err.message);
+        fs.unlink(req.files.file.path);
         req.flash('error', err.message);
         return res.redirect('/signup')
     }
     let user = {
         name: name,
-        password: sha1(psd),
+        password: sha1(psd1),
         gender: gender,
         bio: bio,
         avatar: filename
     }
+
     UserModel.create(user)
-        .then(res => {
-            user = res.ops[0];
-            delete use.password;
+        .then(result => {
+            user = result.ops[0];
+            delete user.password;
             req.session.user = user;
             req.flash('success', "注册成功");
             res.redirect('/posts');
         })
         .catch(e => {
             fs.unlink(req.files.file.path);
-
+            if (e.message.match('duplicate key')) {
+                req.flash('error', '用户名已被占用');
+                return res.redirect('/signup')
+            }
+            next(e);
         })
 
 })
