@@ -7,8 +7,8 @@ router.get('/', checkNotLogin, (req, res, next) => {
     res.render('sigin');
 })
 router.post('/', checkNotLogin, (req, res, next) => {
-    const
-        res.send('登陆页');
+
+    res.send('登陆页');
 })
 
 
