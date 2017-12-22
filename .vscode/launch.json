@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/node\\07-myBlog\\lib\\mongo.js"
+            "program": "${workspaceFolder}\\09-expressDemo\\01.js"
         }
     ]
 }
