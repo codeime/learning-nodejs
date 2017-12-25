@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 const target = path.join(__dirname, process.argv[2] || './');
+ // const target = path.join(process.env.localappdata,"\\Packages\\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\\LocalState\\Assets\\");
+
 getDist(target, 0);
 
 function getDist(src, level) {
