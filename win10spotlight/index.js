@@ -12,7 +12,20 @@ files.forEach(file=>{
     const stats=fs.statSync(path.join(target,file));
     if(stats.isFile()){
       fs.readFile(path.join(target,file),(err,data)=>{
-      if(data.compare("")==0){}
-    })  
+        const tempData=data.slice(0,7);
+        let filename;
+
+        if(tempData.indexOf( Buffer.from('FFD8FF',"hex"))!=-1){
+          filename=path.join(src,file+".jpg");  
+        }else if(tempData.indexOf( Buffer.from('89504E47','hex'))!=-1){
+          filename=path.join(src,file+".png");
+        }
+        if(filename){
+             fs.writeFile(filename,data,err=>{
+                if(err)console.log(err);
+             });
+        }
+
+   })  
   }
 })
