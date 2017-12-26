@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const imageInfo = require('image-info');
 
 
 const target = path.join(process.env.localappdata, "\\Packages\\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\\LocalState\\Assets\\");
@@ -41,7 +42,9 @@ files.forEach(file => {
         fs.writeFile(filename, data, err => {
 
           if (err) console.log(err);
-
+          imageInfo(filename, (err, info) => {
+            console.log(info);
+          })
         });
 
       }
