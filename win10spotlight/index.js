@@ -1,43 +1,51 @@
-
 const fs = require('fs');
 const path = require('path');
 
 
-const target = path.join(process.env.localappdata,"\\Packages\\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\\LocalState\\Assets\\");
-const src=path.join(process.env.userprofile,'Pictures\\spotlight\\'+new Date().getTime());
-fs.mkdirSync(src);
-const files=fs.readdirSync(target);
+const target = path.join(process.env.localappdata, "\\Packages\\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\\LocalState\\Assets\\");
+const src = path.join(process.env.userprofile, 'Pictures\\spotlight');
 
-files.forEach(file=>{
+try {
+  const s = fs.statSync(src);
+  if (!s.isDirectory()) {
+    fs.mkdirSync(src);
+  }
+} catch (error) {
+  fs.mkdirSync(src);
+}
 
-    const stats=fs.statSync(path.join(target,file));
-    
-    if(stats.isFile()){
+const files = fs.readdirSync(target);
 
-      fs.readFile(path.join(target,file),(err,data)=>{
+files.forEach(file => {
 
-        const tempData=data.slice(0,7);
-        let filename;
+  const stats = fs.statSync(path.join(target, file));
 
-        if(tempData.indexOf( Buffer.from('FFD8FF',"hex"))!=-1){
+  if (stats.isFile()) {
 
-          filename=path.join(src,file+".jpg");  
+    fs.readFile(path.join(target, file), (err, data) => {
 
-        }else if(tempData.indexOf( Buffer.from('89504E47','hex'))!=-1){
+      const tempData = data.slice(0, 7);
+      let filename;
 
-          filename=path.join(src,file+".png");
-         }
+      if (tempData.indexOf(Buffer.from('FFD8FF', "hex")) != -1) {
 
-        if(filename){
+        filename = path.join(src, file + ".jpg");
 
-         fs.writeFile(filename,data,err=>{
+      } else if (tempData.indexOf(Buffer.from('89504E47', 'hex')) != -1) {
 
-            if(err)console.log(err);
+        filename = path.join(src, file + ".png");
+      }
+
+      if (filename) {
+
+        fs.writeFile(filename, data, err => {
+
+          if (err) console.log(err);
 
         });
 
-     }
+      }
 
- })  
+    })
   }
 })
