@@ -43,7 +43,12 @@ files.forEach(file => {
 
           if (err) console.log(err);
           imageInfo(filename, (err, info) => {
-            console.log(info);
+            var wh=info.height/info.width;
+            if(wh==1){
+                fs.unlink(filename,(err)=>{
+                    if(err){console.log(err)}
+                })
+            }
           })
         });
 
