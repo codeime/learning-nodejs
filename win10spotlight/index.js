@@ -23,11 +23,7 @@ files.forEach(file => {
 
   if (stats.isFile()) {
 
-    fs.readFile(path.join(target, file), readFileCb(err, data))
-  }
-})
-
-function readFileCb(err, data){
+    fs.readFile(path.join(target, file),(err, data)=>{
 
       const tempData = data.slice(0, 7);
       let filename;
@@ -43,14 +39,7 @@ function readFileCb(err, data){
 
       if (filename) {
 
-        fs.writeFile(filename, data, writeFileCb(err));
-
-      }
-
-    }
-
-
-    function writeFileCb(err){
+        fs.writeFile(filename, data, err=>{
 
           if (err) console.log(err);
           imageInfo(filename, (err, info) => {
@@ -62,4 +51,11 @@ function readFileCb(err, data){
             }
           })
         
-    }
+    });
+
+      }
+
+    })
+  }
+})
+
