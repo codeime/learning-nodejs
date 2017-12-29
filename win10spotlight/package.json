@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "image-info": "0.0.2"
+    "image-info": "0.0.2",
+    "node-notifier": "^5.1.2"
   }
 }
