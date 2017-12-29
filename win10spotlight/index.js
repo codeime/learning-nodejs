@@ -26,8 +26,8 @@ files.forEach(file => {
 
 	if (stats.isFile()) {
 
-		fs.readFile(path.join(target, file),(err, data)=>{
-
+		readFile(path.join(target, file))
+		.then(function(data){
 			const tempData = data.slice(0, 7);
 			let filename;
 
@@ -61,11 +61,24 @@ files.forEach(file => {
 				});
 
 			}
-
 		})
+		.catch(function(err){
+			console.log(err);
+		})
+		
 	}
 })
 
+function readFile(path){
+	return new Promise(function(resolve,reject){
+		fs.readFile(path,(err,data)=>{
+			if(err){
+				reject(err);
+			}
+			resolve(data);
+		})
+	})
+}
 function imgInfo(filename){
 	return new Promise(function(resolve,reject){
 		imageInfo(filename, (err, info) => {
