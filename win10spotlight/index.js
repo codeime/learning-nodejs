@@ -70,17 +70,24 @@ files.forEach(file => {
 })
 
 function readFile(path){
+
 	return new Promise(function(resolve,reject){
+
 		fs.readFile(path,(err,data)=>{
 			if(err){
 				reject(err);
 			}
 			resolve(data);
 		})
+
 	})
+
 }
+
 function imgInfo(filename){
+
 	return new Promise(function(resolve,reject){
+
 		imageInfo(filename, (err, info) => {
 			if(err){
 				reject(err);
@@ -88,5 +95,7 @@ function imgInfo(filename){
 			resolve(info);
 			
 		})
+		
 	})
+
 }
