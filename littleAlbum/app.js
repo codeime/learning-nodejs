@@ -8,4 +8,4 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get('/', router.showIndex);
-app.listen(3000);
+app.listen(3002);

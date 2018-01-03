@@ -6,8 +6,9 @@ module.exports.getAllAlbum = function (fn) {
         if (err) console.log(err);
         let album = [];
         (function iterator(i) {
-            if (i = data.length) {
+            if (i == data.length) {
                 fn && fn(album);
+                return;
             }
             fs.stat(path.join(__dirname, "../uploads/" + data[i]), (err, stats) => {
                 if (err) console.log(err);
