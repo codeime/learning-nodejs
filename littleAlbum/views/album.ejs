@@ -9,7 +9,7 @@
     <title>littleAlbum</title>
 
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
 
     <!--[if lt IE 9]>
@@ -60,14 +60,14 @@
     </nav>
     <div class="container">
         <div class="row">
-            <% for(var i=0;i<album.length;i++){ %>
+            <% for(var i=0;i<data.img.length;i++){ %>
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <a href="#" class="thumbnail">
-                            <img src="img/folder.jpg" alt="...">
+                        <a href="" class="thumbnail">
+                            <img src="/<%= data.albumname+'/'+data.img[i] %>" alt="...">
                             <div class="caption">
                                 <h3>
-                                    <%= album[i] %>
+                                    <%= data.img[i] %>
                                 </h3>
                             </div>
                         </a>
@@ -77,9 +77,9 @@
         </div>
     </div>
 
-    <script src="js/jquery-1.11.1.js"></script>
+    <script src="/js/jquery-1.11.1.js"></script>
 
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 
 </html>
