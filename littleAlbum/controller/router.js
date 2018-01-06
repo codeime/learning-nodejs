@@ -12,7 +12,7 @@ module.exports.showIndex = function (req, res, next) {
 
 }
 module.exports.showAlbum = function (req, res, next) {
-    file.getAllImageByAlbumName(req.params.album, function (err, data) {
+    file.getImgByAlbumName(req.params.album, function (err, data) {
         if (err) {
             next();
             return;

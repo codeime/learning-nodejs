@@ -10,7 +10,7 @@ module.exports.getAllAlbum = function (fn) {
         let album = [];
         (function iterator(i) {
             if (i == data.length) {
-                fn && fn(album);
+                fn && fn(null, album);
                 return;
             }
             fs.stat(path.join(__dirname, "../uploads/" + data[i]), (err, stats) => {
