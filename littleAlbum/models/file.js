@@ -27,7 +27,7 @@ module.exports.getAllAlbum = function (fn) {
 
 }
 module.exports.getImgByAlbumName = function (album, fn) {
-    fs.readdir(path.join(__dirname, "../uploads" + album), function (err, data) {
+    fs.readdir(path.join(__dirname, "../uploads/" + album), function (err, data) {
         if (err) {
             fn(err, null);
             return;
@@ -35,10 +35,10 @@ module.exports.getImgByAlbumName = function (album, fn) {
         let img = [];
         (function iterator(i) {
             if (i == data.length) {
-                fn && fn(img);
+                fn && fn(null, img);
                 return;
             }
-            fs.stat(path.join(__dirname, "../uploads/" + album + data[i]), (err, stats) => {
+            fs.stat(path.join(__dirname, "../uploads/" + album + "/" + data[i]), (err, stats) => {
                 if (err) {
                     fn(err, null);
                     return;
