@@ -37,19 +37,20 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#">Link
+                        <a href="/">相册
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">Link</a>
+
+                        <a href="/up">上传</a>
                     </li>
 
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#">Link</a>
+                        <a href="#">其他</a>
                     </li>
 
                 </ul>
@@ -61,12 +62,12 @@
     <div class="container">
         <ol class="breadcrumb">
             <li>
-                <a href="#">Home</a>
+                <a href="/">所有</a>
             </li>
-            <li>
-                <a href="#">Library</a>
+
+            <li class="active">
+                <%= data.albumname %>
             </li>
-            <li class="active">Data</li>
         </ol>
         <div class="row">
             <% for(var i=0;i<data.img.length;i++){ %>

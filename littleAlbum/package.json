@@ -2,10 +2,11 @@
   "name": "littlealbum",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "dependencies": {
     "ejs": "^2.5.7",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "express-formidable": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
