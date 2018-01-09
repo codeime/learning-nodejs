@@ -16,22 +16,22 @@ module.exports.showIndex = function (req, res, next) {
 }
 module.exports.showAlbum = function (req, res, next) {
 
-    if (req.params.album != "favicon.ico") {
 
-        file.getImgByAlbumName(req.params.album, function (err, data) {
-            if (err) {
 
-                next();
-                return;
+    file.getImgByAlbumName(req.params.album, function (err, data) {
+        if (err) {
+
+            next();
+            return;
+        }
+        res.render('album', {
+            'data': {
+                "albumname": req.params.album,
+                "img": data
             }
-            res.render('album', {
-                'data': {
-                    "albumname": req.params.album,
-                    "img": data
-                }
-            })
         })
-    }
+    })
+
 }
 
 module.exports.showUp = function (req, res, next) {
