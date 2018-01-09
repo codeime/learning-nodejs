@@ -8,9 +8,13 @@ const app = express();
 app.set('view engine', "ejs");
 app.use(express.static(path.join(__dirname, "/public")));
 
-app.get("/", (req, res, next) => {
-    res.render("index");
-})
+app.get("/", router.showIndex)
+app.get("/regist", router.showRegist)
+app.post("/regist", router.doRegist)
 
 
-app.listen(3000);
+app.listen(3000, function () {
+    console.log("****************************")
+    console.log("*********启 动 成 功*********")
+    console.log("****************************")
+});
