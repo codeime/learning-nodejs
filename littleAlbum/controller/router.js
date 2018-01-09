@@ -51,12 +51,9 @@ module.exports.showUp = function (req, res, next) {
 module.exports.upFile = function (req, res, next) {
     const album = req.fields.album;
     const src = req.files.file.path;
-    const filename = src.split(path.sep).pop();
-    let target = path.join(module.parent.filename, "../uploads/" + album + "/" + filename);
-    fs.rename(src, target, err => {
+    file.saveFile(src, album, function (err) {
         if (err) {
-            console.log(err);
-            return;
+            next()
         }
         res.redirect('/up');
     })

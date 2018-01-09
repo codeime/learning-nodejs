@@ -53,3 +53,15 @@ module.exports.getImgByAlbumName = function (album, fn) {
         })(0)
     })
 }
+module.exports.saveFile = function (filePath, album, fn) {
+    const filename = filePath.split(path.sep).pop();
+    let target = path.join(__dirname, "../uploads/" + album + "/" + filename);
+    fs.rename(filePath, target, err => {
+        if (err) {
+            fn(err);
+            return;
+        }
+        fn(null);
+
+    })
+}
