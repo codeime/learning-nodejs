@@ -70,7 +70,9 @@ module.exports.updata = function (collectionName, json, callback) {
 }
 module.exports.count = function (collectionName, json, callback) {
     __connect(function (err, db) {
-        let c = db.collection(collectionName).find(json).count();
-        callback(err, c);
+        db.collection(collectionName).find(json).count((err, count) => {
+            callback(err, count);
+        });
+
     })
 }

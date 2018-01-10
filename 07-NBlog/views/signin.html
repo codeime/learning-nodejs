@@ -4,23 +4,24 @@
 
 	<body>
 		<%-include('./public/nav.html')%>
-			<div class="container section" id="loginPage">
-				<form method="post">
-					<div class="col-xs-8 col-sm-4 center-block">
-						用户名：
-						<p>
-							<input type="text" name="name" value="" placeholder="输入用户名">
-						</p>
-						密码：
-						<p>
-							<input type="password" name="psd" value="" placeholder="请输入密码">
-						</p>
-						<button type="submit" class="center-block">登陆</button>
-					</div>
-				</form>
-			</div>
-			<!-- 当前页面的js引用 -->
-			<script type="text/javascript" src="js/"></script>
-			<!-- 当前页面的js -->
+			<%- include('./public/notice.html')%>
+				<div class="container section" id="loginPage">
+					<form method="post">
+						<div class="col-xs-8 col-sm-4 center-block">
+							用户名：
+							<p>
+								<input type="text" name="name" value="" placeholder="输入用户名">
+							</p>
+							密码：
+							<p>
+								<input type="password" name="password" value="" placeholder="请输入密码">
+							</p>
+							<button type="submit" class="center-block">登陆</button>
+						</div>
+					</form>
+				</div>
+				<!-- 当前页面的js引用 -->
+				<script type="text/javascript" src="js/"></script>
+				<!-- 当前页面的js -->
 
-			<%-include('./public/foot.html')%>
+				<%-include('./public/foot.html')%>

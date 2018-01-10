@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const checkNotLogin = require('../middlewares/check').checkNotLogin;
-router.get('/', checkNotLogin, (req, res, next) => {
+const checkLogin = require('../middlewares/check').checkLogin;
+router.get('/', checkLogin, (req, res, next) => {
+    console.log(req.session.user + "--------");
     req.session.user = null;
     req.flash("success", '登出成功');
     res.redirect('/posts')

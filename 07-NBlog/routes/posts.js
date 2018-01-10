@@ -1,15 +1,41 @@
 const express = require('express');
 const router = express.Router();
 const checkLogin = require('../middlewares/check').checkLogin;
+const postModel = require('../models/post');
 
 router.get('/', checkLogin, (req, res, next) => {
-    res.render('posts');
-})
-router.post('/create', checkLogin, (req, res, next) => {
-    res.send('发表文章')
+    res.render('index');
 })
 router.get('/create', checkLogin, (req, res, next) => {
-    res.send('发表文章页')
+    res.render('posts')
+
+})
+router.post('/create', checkLogin, (req, res, next) => {
+    const author = req.session.user._id;
+    const title = req.fields.title;
+    const content = req.fields.content;
+    try {
+        if (!title) {
+            throw new Error("标题不能为空");
+        }
+        if (!content) {
+            throw new Error("内容不能为空");
+        }
+    } catch (e) {
+        req.flash("error", e.message);
+        res.redirect('back');
+    }
+    let post = {
+        author: author,
+        title: title,
+        content: content
+    }
+    postModel.create(post)
+        .then(function (result) {
+            post = result.ops[0];
+            req.flash('success', "文章上传成功");
+            res.redirect(`/posts/${post._id}`)
+        }).catch(next)
 
 })
 router.get('/:postId', checkLogin, (req, res, next) => {

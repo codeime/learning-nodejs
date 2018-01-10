@@ -1,22 +1,28 @@
 .navbar {
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 5px rgba(0, 0, 0, 0.075);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 5px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 5px rgba(0, 0, 0, 0.075);
   border: none 0;
 }
+
 .section {
-  margin-top: 100px;
+  margin-top: 40px;
 }
+
+
 /* 列表页 */
+
 #indexPage img.media-object {
   width: 60px;
   height: 60px;
   background-color: #ddd;
 }
+
 #indexPage .jumbotron {
   background-color: #fff;
   border: 1px solid #eee;
   position: relative;
 }
+
 #indexPage .jumbotron .timeBadge {
   position: absolute;
   bottom: 5px;
@@ -24,19 +30,23 @@
   background-color: #fff;
   color: #666;
 }
+
 #indexPage .jumbotron .nav-pills {
   position: absolute;
   bottom: 0;
   right: 0;
 }
+
 #indexPage .jumbotron .btn {
   padding: 5px;
   font-size: 14px;
 }
+
 #signinPage .center-block,
 #loginPage .center-block {
   float: inherit;
 }
+
 #signinPage .center-block input,
 #loginPage .center-block input,
 #signinPage .center-block button,
@@ -51,6 +61,7 @@
   height: 35px;
   margin: 5px 0 10px 0;
 }
+
 .pinglunBox:after {
   content: "评论";
   display: block;
@@ -62,13 +73,15 @@
   height: 30px;
   line-height: 30px;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 0 30px;
   font-size: 18px;
 }
+
 .pinglunBox .media {
   margin: 10px 0;
 }
+
 .pinglunBox textarea {
   display: block;
   width: 100%;
@@ -77,6 +90,7 @@
   resize: none;
   height: 250px;
 }
+
 .pinglunBox button {
   width: 50px;
   height: 30px;

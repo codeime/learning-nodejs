@@ -1,6 +1,7 @@
 module.exports = {
     checkLogin: function checkLogin(req, res, next) {
         if (!req.session.user) {
+            console.log(req.session.user)
             req.flash('error', '未登录');
             return res.redirect('/signin')
         }
@@ -8,7 +9,7 @@ module.exports = {
     },
     checkNotLogin: function checkNotLogin(req, res, next) {
         if (req.session.user) {
-            req.flash('error', '已登录');
+            req.flash('success', '已登录');
             return res.redirect('back')
         }
         next();
