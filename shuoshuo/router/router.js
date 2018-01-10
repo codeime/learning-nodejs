@@ -1,5 +1,6 @@
 const formidable = require('formidable');
-const db = require('../models/db')
+const db = require('../models/db');
+const md5 = require('../models/md5');
 
 
 module.exports.showIndex = function (req, res, next) {
@@ -24,6 +25,20 @@ module.exports.doRegist = function (req, res, next) {
                 res.send(-1); /* 该用户名存在 */
                 return;
             }
+            password = md5(md5(password) + "guobing");
+            db.insertOne("user", {
+                username: username,
+                password: password
+            }, (err, result) => {
+                if (err) {
+                    res.send(-3);
+                    return;
+                }
+                /* session */
+                req.session.user = username;
+                res.send(1);
+
+            })
         })
     })
     res.render('regist')
