@@ -23,7 +23,7 @@ app.get("/regist", router.showRegist)
 app.post("/regist", router.doRegist)
 
 
-app.listen(3000, function () {
+app.listen(3003, function () {
     console.log("****************************")
     console.log("*********启 动 成 功*********")
     console.log("****************************")
