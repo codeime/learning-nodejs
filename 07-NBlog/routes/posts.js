@@ -3,8 +3,16 @@ const router = express.Router();
 const checkLogin = require('../middlewares/check').checkLogin;
 const postModel = require('../models/post');
 
-router.get('/', checkLogin, (req, res, next) => {
-    res.render('index');
+router.get('/', (req, res, next) => {
+    const author = req.query.author;
+    postModel.getPosts(author)
+        .then(function (posts) {
+            res.render('index', {
+                posts: posts
+            })
+        })
+        .catch(next)
+
 })
 router.get('/create', checkLogin, (req, res, next) => {
     res.render('posts')
@@ -39,7 +47,7 @@ router.post('/create', checkLogin, (req, res, next) => {
 
 })
 router.get('/:postId', checkLogin, (req, res, next) => {
-    res.send('文章详情')
+    res.render('details')
 
 })
 router.get('/:postId/edit', checkLogin, (req, res, next) => {
