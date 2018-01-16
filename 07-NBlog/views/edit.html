@@ -1,0 +1,29 @@
+<%-include('./public/head.html')%>
+
+    </head>
+
+    <body>
+        <%- include('./public/nav.html')%>
+            <%- include('./public/notice.html')%>
+
+                <div class="container section">
+                    <div class="row">
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="title">标题</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="请输入标题">
+                            </div>
+                            <div class="form-group">
+                                <label for="content">内容</label>
+                                <textarea class="form-control" name="content" rows="10"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-default">发布</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- 当前页面的js引用 -->
+                <script type="text/javascript" src="/js/"></script>
+                <!-- 当前页面的js -->
+
+                <%- include('./public/foot.html')%>

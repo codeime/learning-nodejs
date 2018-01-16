@@ -14,11 +14,13 @@ router.get('/', (req, res, next) => {
         })
         .catch(next)
 
-})
+});
+
 router.get('/create', checkLogin, (req, res, next) => {
     res.render('posts')
 
-})
+});
+
 router.post('/create', checkLogin, (req, res, next) => {
     const author = req.session.user._id;
     const title = req.fields.title;
@@ -61,7 +63,12 @@ router.get('/:postId', checkLogin, (req, res, next) => {
 
 })
 router.get('/:postId/edit', checkLogin, (req, res, next) => {
-    res.send('更新文章页')
+    postModel.getPostById(req.params.postId)
+        .then(function (result) {
+            res.render('edit', result);
+        })
+        .catch(next)
+
 
 })
 router.post('/:postId/edit', checkLogin, (req, res, next) => {
