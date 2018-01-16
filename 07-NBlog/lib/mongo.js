@@ -22,7 +22,7 @@ mongolass.plugin('addCreatedAt', {
     }
 })
 
-exports.User = mongolass.model('user', {
+exports.User = mongolass.model('User', {
     name: {
         type: 'string'
     },

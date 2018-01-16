@@ -7,6 +7,7 @@ router.get('/', (req, res, next) => {
     const author = req.query.author;
     postModel.getPosts(author)
         .then(function (posts) {
+
             res.render('index', {
                 posts: posts
             })
@@ -47,7 +48,16 @@ router.post('/create', checkLogin, (req, res, next) => {
 
 })
 router.get('/:postId', checkLogin, (req, res, next) => {
-    res.render('details')
+    postModel.getPostById(req.params.postId)
+        .then(function (result) {
+            console.log(result);
+            res.render('details', {
+                post: result
+            })
+        })
+        .catch(next)
+
+
 
 })
 router.get('/:postId/edit', checkLogin, (req, res, next) => {

@@ -11,19 +11,22 @@
 						<div class="media">
 							<div class="media-left">
 								<a href="#">
-									<img src="<%= posts[i].author.avator%>" class="media-object img-circle">
+									<img src="/img/<%= posts[i].author.avatar%>" class="media-object img-circle">
+									<%= posts[i].author.name%>
 								</a>
 							</div>
 							<div class="media-body">
 
 								<div class="jumbotron">
-									<span class="badge timeBadge">2017-12.05</span>
+									<span class="badge timeBadge">
+										<%= posts[i].created_at%>
+									</span>
 									<h3>
 										<%=posts[i].title%>
 									</h3>
 									<p>...</p>
 									<p>
-										<a class="btn btn-primary btn-lg" href="/posts/<%= post[i]._id%>" role="button">查看更多</a>
+										<a class="btn btn-primary btn-lg" href="/posts/<%= posts[i]._id%>" role="button">查看更多</a>
 									</p>
 									<ul class="nav nav-pills" role="tablist">
 

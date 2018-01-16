@@ -41,7 +41,7 @@ module.exports = {
         return Post
             .find(query)
             .populate({
-                author: "author",
+                path: "author",
                 model: 'User'
             })
             .sort({

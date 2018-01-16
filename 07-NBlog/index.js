@@ -60,5 +60,5 @@ routes(app);
 
 /* 监听端口，启动程序 */
 app.listen(config.port, () => {
-    console.log(`${pkg.name}listening on post ${config.port}`)
+    console.log(`${pkg.name} listening on post ${config.port}`)
 })
