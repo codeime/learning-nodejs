@@ -41,23 +41,30 @@ router.get("/cut/:filename", checkLogin, (req, res, next) => {
     });
 })
 router.post("/cut", checkLogin, (req, res, next) => {
-    console.log(req.fields);
-    let filename01 = req.fields.filename;
-    let filename02 = "avatar" + req.fields.filename;
-    let file01 = path.join(__dirname, "../public/img/" + filename01);
-    let file02 = path.join(__dirname, "../public/img/" + filename02);
+
+    let filename = req.fields.filename;
+
+    let file = path.join(__dirname, "../public/img/" + filename);
+
     var cutData = req.fields;
-    gm(file01)
+    gm(file)
         .crop(cutData.w, cutData.h, cutData.x, cutData.y)
         .resize(100, 100, '!')
-        .write(file02, function (err) {
-            if (err) console.log(err);
+        .write(file, function (err) {
+            if (err) {
+                next(err);
+                return;
+            }
 
             userModel.updataById(req.session.user._id, {
-                avatar: filename02
-            });
-            req.session.user.avatar = filename02;
-            res.send("剪切成功");
+                    avatar: filename
+                }).then(function () {
+
+                    req.session.user.avatar = filename;
+                    res.redirect("/user/");
+                })
+                .catch(next);
+
         });
 
 })

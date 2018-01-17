@@ -52,7 +52,7 @@ router.post('/create', checkLogin, (req, res, next) => {
 router.get('/:postId', checkLogin, (req, res, next) => {
     postModel.getPostById(req.params.postId)
         .then(function (result) {
-            console.log(result);
+
             res.render('details', {
                 post: result
             })
