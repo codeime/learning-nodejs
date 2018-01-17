@@ -10,7 +10,7 @@
 					<% for(var i=0;i<posts.length;i++){%>
 						<div class="media">
 							<div class="media-left">
-								<a href="#">
+								<a href="/posts?author=<%=posts[i].author._id%>">
 									<img src="/img/<%= posts[i].author.avatar%>" class="media-object img-circle">
 									<%= posts[i].author.name%>
 								</a>

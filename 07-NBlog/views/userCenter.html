@@ -1,0 +1,81 @@
+<%-include('./public/head.html')%>
+
+    </head>
+
+    <body>
+
+        <%- include('./public/nav.html')%>
+            <%- include('./public/notice.html')%>
+                <div class="container section" id="indexPage">
+
+
+                    <div class="jumbotron">
+                        <img style="width:100px;height:100px;" src="/img/<%=user.avatar%>" alt="..." class="img-circle">
+                        <a href="/user/upload">修改头像</a>
+                        <h1>Hello,
+                            <%=user.name%>
+                        </h1>
+                        <p>
+                            性别：
+                            <%if(user.gender=='m'){%>男
+                                <%}else if(user.gender=='f'){%>
+                                    女
+                                    <%}else{%>
+                                        保密
+                                        <%}%>
+                        </p>
+                        <p>
+                            个性签名：
+                            <%=user.bio%>
+                        </p>
+
+                    </div>
+
+
+
+                    <% for(var i=0;i<posts.length;i++){%>
+                        <div class="media">
+
+                            <div class="media-body">
+
+                                <div class="jumbotron">
+                                    <span class="badge timeBadge">
+                                        <%= posts[i].created_at%>
+                                    </span>
+                                    <h3>
+                                        <%=posts[i].title%>
+                                    </h3>
+                                    <p>...</p>
+                                    <p>
+                                        <a class="btn btn-primary btn-lg" href="/posts/<%= posts[i]._id%>" role="button">查看更多</a>
+                                    </p>
+                                    <ul class="nav nav-pills" role="tablist">
+
+                                        <li role="presentation">
+                                            <a href="#">阅读
+                                                <span class="badge">
+                                                    <%= posts[i].pv||0%>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#">留言
+                                                <span class="badge">
+                                                    <%= posts[i].commentsCount||0%>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <%}%>
+
+                </div>
+                <!-- 当前页面的js引用 -->
+                <script type="text/javascript" src="js/"></script>
+                <!-- 当前页面的js -->
+
+                <%-include('./public/foot.html')%>

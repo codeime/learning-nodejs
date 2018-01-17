@@ -9,6 +9,13 @@ module.exports = {
                 name: name
             }).addCreatedAt()
             .exec()
+    },
+    updataById: function updataById(id, data) {
+        return User.update({
+            _id: id
+        }, {
+            $set: data
+        }).exec()
     }
 
 }

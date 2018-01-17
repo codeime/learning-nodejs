@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/create', checkLogin, (req, res, next) => {
-    res.render('posts')
+    res.render('create')
 
 });
 

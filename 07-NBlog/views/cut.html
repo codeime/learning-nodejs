@@ -1,0 +1,144 @@
+<%-include('./public/head.html')%>
+    <link rel="stylesheet" href="/css/cropper.min.css">
+    <style>
+        img {
+            max-width: 100%;
+        }
+
+        .avatar-wrapper {
+            height: 364px;
+        }
+
+        .row,
+        .preview {
+            overflow: hidden;
+        }
+
+        .col {
+            float: left;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-2 {
+            width: 16.7%;
+        }
+
+        .col-1 {
+            width: 8.3%;
+        }
+    </style>
+    </head>
+
+    <body>
+
+        <%- include('./public/nav.html')%>
+            <%- include('./public/notice.html')%>
+                <div class="container section" id="indexPage">
+
+
+                    <div class="row clearfix">
+                        <div class="col col-xs-9 avatar-wrapper">
+                            <img id="image" data-name="<%=filename%>" src="/img/<%=filename%>" alt="Picture">
+                        </div>
+
+                        <div class="col col-xs-2">
+                            <div class="preview"></div>
+                        </div>
+
+
+                    </div>
+                    <div style="margin-top:20px;">
+                        <button id="cut">确定</button>
+                    </div>
+
+
+                </div>
+                <!-- 当前页面的js引用 -->
+                <script type="text/javascript" src="/js/cropper.min.js"></script>
+                <!-- 当前页面的js -->
+                <script>
+                    $(function () {
+                        var $previews = $('.preview');
+                        var cutData = {
+                            x: 0,
+                            y: 0,
+                            w: 0,
+                            h: 0
+                        };
+                        $('#image').cropper({
+
+                            strict: false,
+                            aspectRatio: 1,
+                            viewMode: 1,
+                            zoomable: false,
+                            ready: function (e) {
+                                var $clone = $(this).clone().removeClass('cropper-hidden');
+
+                                $clone.css({
+                                    display: 'block',
+                                    width: '100%',
+                                    minWidth: 0,
+                                    minHeight: 0,
+                                    maxWidth: 'none',
+                                    maxHeight: 'none'
+                                });
+
+                                $previews.css({
+                                    width: '100%',
+                                    overflow: 'hidden'
+                                }).html($clone);
+                            },
+
+                            crop: function (e) {
+                                cutData.x = e.x;
+                                cutData.y = e.y;
+                                cutData.h = e.height;
+                                cutData.w = e.width;
+
+                                var imageData = $(this).cropper('getImageData');
+                                var previewAspectRatio = e.width / e.height;
+
+                                $previews.each(function () {
+                                    var $preview = $(this);
+                                    var previewWidth = $preview.width();
+                                    var previewHeight = previewWidth / previewAspectRatio;
+                                    var imageScaledRatio = e.width / previewWidth;
+
+                                    $preview.height(previewHeight).find('img').css({
+                                        width: imageData.naturalWidth /
+                                            imageScaledRatio,
+                                        height: imageData.naturalHeight /
+                                            imageScaledRatio,
+                                        marginLeft: -e.x / imageScaledRatio,
+                                        marginTop: -e.y / imageScaledRatio
+                                    });
+                                });
+                            }
+                        });
+
+
+
+                        $("#cut").click(function () {
+                            var filename = $previews.find("img").attr('data-name');
+                            cutData['filename'] = filename;
+                            $.ajax({
+                                url: '/user/cut',
+                                type: 'POST',
+                                data: cutData,
+                                success: function (res) {
+                                    alert(123);
+                                }
+                            })
+                        })
+
+                    });
+                </script>
+
+                <%-include('./public/foot.html')%>

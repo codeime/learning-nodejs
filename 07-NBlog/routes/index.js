@@ -6,5 +6,6 @@ module.exports = function (app) {
     app.use('/signin', require('./signin'))
     app.use('/signout', require('./signout'))
     app.use('/posts', require('./posts'))
+    app.use('/user', require('./user'))
     app.use('/comment', require('./comment'))
 }

@@ -15,7 +15,7 @@ router.post('/', checkNotLogin, (req, res, next) => {
     const bio = req.fields.bio;
     const psd1 = req.fields.password;
     const psd2 = req.fields.password2;
-    const filename = req.files.file.path.split(path.sep).pop();
+
 
     try {
 
@@ -29,9 +29,7 @@ router.post('/', checkNotLogin, (req, res, next) => {
             throw new Error('简介限制1-30个字符')
         }
 
-        if (!req.files.file.name) {
-            throw new Error('没有上传头像')
-        }
+
         if (psd1.length < 6) {
             throw new Error('密码太短')
 
@@ -50,7 +48,6 @@ router.post('/', checkNotLogin, (req, res, next) => {
         password: sha1(psd1),
         gender: gender,
         bio: bio,
-        avatar: filename
     }
 
     UserModel.create(user)
