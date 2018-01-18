@@ -133,7 +133,11 @@
                                 type: 'POST',
                                 data: cutData,
                                 success: function (res) {
-                                    alert(123);
+                                    if (res == "1") {
+                                        location.href = "/user/"
+                                    } else {
+                                        location.href = "/user/upload"
+                                    }
                                 }
                             })
                         })

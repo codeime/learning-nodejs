@@ -50,9 +50,12 @@ router.post('/create', checkLogin, (req, res, next) => {
 
 })
 router.get('/:postId', checkLogin, (req, res, next) => {
-    postModel.getPostById(req.params.postId)
+    const id = req.params.postId;
+    postModel.getPostById(id)
         .then(function (result) {
-
+            if (result == null) {
+                console.log(123123123123);
+            }
             res.render('details', {
                 post: result
             })

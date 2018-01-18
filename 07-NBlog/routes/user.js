@@ -59,9 +59,14 @@ router.post("/cut", checkLogin, (req, res, next) => {
             userModel.updataById(req.session.user._id, {
                     avatar: filename
                 }).then(function () {
+                    let oldAvatar = req.session.user.avatar;
+                    if (oldAvatar != "moren.png") {
+                        fs.unlink(path.join(__dirname, '../public/img/' + oldAvatar), err => {
+                            req.session.user.avatar = filename;
+                            res.send("1");
+                        })
+                    }
 
-                    req.session.user.avatar = filename;
-                    res.redirect("/user/");
                 })
                 .catch(next);
 

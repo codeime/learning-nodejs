@@ -9,22 +9,22 @@
                 <div class="container section" id="indexPage">
                     <div class="media">
                         <div class="media-left">
-                            <a href="/posts?author=<%=post.author._id%>">
-                                <img class="media-object img-circle" src='/img/<%=post.author.avatar%>'>
-                                <%=post.author.name%>
+                            <a href="/posts?author=<%= post.author._id %>">
+                                <img class="media-object img-circle" src='/img/<%= post.author.avatar %>'>
+                                <%= post.author.name %>
                             </a>
                         </div>
                         <div class="media-body">
                             <!-- 文章 -->
                             <div class="jumbotron">
                                 <span class="badge timeBadge">
-                                    <%=post.created_at%>
+                                    <%= post.created_at%>
                                 </span>
                                 <h3>
-                                    <%=post.title%>
+                                    <%= post.title%>
                                 </h3>
                                 <div>
-                                    <%-post.content%>
+                                    <%- post.content%>
                                 </div>
 
                                 <ul class="nav nav-pills" role="tablist">
@@ -46,7 +46,7 @@
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="#">
-                                            <img class="media-object img-circle" src="..." alt="...">
+                                            <img class="media-object img-circle" src="/" alt="...">
                                         </a>
                                     </div>
                                     <div class="media-body">
@@ -72,7 +72,7 @@
 
                 </div>
                 <!-- 当前页面的js引用 -->
-                <script type="text/javascript" src="js/"></script>
+                <script type="text/javascript" src="/js/"></script>
                 <!-- 当前页面的js -->
 
                 <%-include('./public/foot.html')%>

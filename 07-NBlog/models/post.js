@@ -26,7 +26,7 @@ module.exports = {
                 _id: id
             })
             .populate({
-                path: 'author',
+                path: "author",
                 model: "User"
             })
             .addCreatedAt()
