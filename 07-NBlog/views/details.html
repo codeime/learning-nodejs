@@ -31,34 +31,46 @@
 
                                     <li role="presentation">
                                         <a href="#">阅读
-                                            <span class="badge">42</span>
+                                            <span class="badge">
+                                                <%=post.pv||0%>
+                                            </span>
                                         </a>
                                     </li>
                                     <li role="presentation">
                                         <a href="#">留言
-                                            <span class="badge">3</span>
+                                            <span class="badge">
+                                                <%=post.commentCount||0%>
+                                            </span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <!-- 评论 -->
                             <div class="jumbotron pinglunBox">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object img-circle" src="/" alt="...">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Media heading</h4>
-                                        ...
-                                    </div>
-                                </div>
-                                <p>
-                                    <textarea rows="" cols=""></textarea>
-                                </p>
+                                <% comments.forEach(comment=>{%>
 
-                                <button type="">发表</button>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="/posts?author=<%= comment.author._id%>">
+                                                <img class="media-object img-circle" src="/img/<%= comment.author.avatar%>" alt="...">
+
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">
+                                                <%= comment.author.name%>
+                                            </h4>
+                                            <%= comment.content%>
+                                        </div>
+                                    </div>
+                                    <% })%>
+                                        <%if(user){%>
+                                            <p>
+                                                <textarea rows="" cols=""></textarea>
+                                            </p>
+
+                                            <button type="">发表</button>
+                                            <%}%>
                             </div>
 
                         </div>

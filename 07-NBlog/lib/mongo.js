@@ -70,3 +70,25 @@ exports.Post.index({
     author: 1,
     _id: -1
 }).exec()
+
+
+
+exports.Comment = mongolass.model('Comment', {
+    author: {
+        type: Mongolass.Types.ObjectId,
+        required: true
+    },
+    content: {
+        type: 'string',
+        require: true
+    },
+    postId: {
+        type: Mongolass.Types.ObjectId,
+        required: true
+    }
+})
+exports.Comment.index({
+    postId: 1,
+    _id: -1
+
+}).exec();

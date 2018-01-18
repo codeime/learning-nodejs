@@ -23,7 +23,7 @@ router.post("/upload", checkLogin, (req, res, next) => {
     const filename = req.files.file.path.split(path.sep).pop();
     const uploadDir = path.join(__dirname, "../public/img");
     const id = req.session.user._id;
-    userModel.updataById(id, {
+    userModel.updateById(id, {
             'avatar': filename
         })
         .then(function (result) {

@@ -11,19 +11,20 @@
                         <form method="post">
                             <div class="form-group">
                                 <label for="title">标题</label>
-                                <input type="text" class="form-control" id="title" name="title" placeholder="请输入标题">
-                            </div>
-                            <div class="form-group">
-                                <label for="content">内容</label>
-                                <textarea class="form-control" name="content" rows="10"></textarea>
-                            </div>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="请输入标题" value="<%= post.title%>" </div>
+                                <div class="form-group">
+                                    <label for="content">内容</label>
+                                    <textarea class="form-control" name="content" rows="10">
+                                        <%=post.content%>
+                                    </textarea>
+                                </div>
 
-                            <button type="submit" class="btn btn-default">发布</button>
+                                <button type="submit" class="btn btn-default">更新</button>
                         </form>
+                        </div>
                     </div>
-                </div>
-                <!-- 当前页面的js引用 -->
-                <script type="text/javascript" src="/js/"></script>
-                <!-- 当前页面的js -->
+                    <!-- 当前页面的js引用 -->
+                    <script type="text/javascript" src="/js/"></script>
+                    <!-- 当前页面的js -->
 
-                <%- include('./public/foot.html')%>
+                    <%- include('./public/foot.html')%>

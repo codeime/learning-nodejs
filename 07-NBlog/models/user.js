@@ -10,7 +10,7 @@ module.exports = {
             }).addCreatedAt()
             .exec()
     },
-    updataById: function updataById(id, data) {
+    updateById: function updataById(id, data) {
         return User.update({
             _id: id
         }, {

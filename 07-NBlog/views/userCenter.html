@@ -48,6 +48,7 @@
                                     <p>...</p>
                                     <p>
                                         <a class="btn btn-primary btn-lg" href="/posts/<%= posts[i]._id%>" role="button">查看更多</a>
+
                                     </p>
                                     <ul class="nav nav-pills" role="tablist">
 
@@ -63,6 +64,16 @@
                                                 <span class="badge">
                                                     <%= posts[i].commentsCount||0%>
                                                 </span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="/posts/<%=posts[i]._id%>/edit">修改
+
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="/posts/<%= posts[i]._id%>/remove">删除
+
                                             </a>
                                         </li>
                                     </ul>
