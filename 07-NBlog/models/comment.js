@@ -1,7 +1,7 @@
 const Comment = require("../lib/mongo").Comment;
 module.exports = {
     addComment(comment) {
-        return Comment.create(data).exec();
+        return Comment.create(comment).exec();
     },
     getCommentByPostId(postId) {
         return Comment.find({

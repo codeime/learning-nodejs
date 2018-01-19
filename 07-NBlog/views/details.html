@@ -65,11 +65,14 @@
                                     </div>
                                     <% })%>
                                         <%if(user){%>
-                                            <p>
-                                                <textarea rows="" cols=""></textarea>
-                                            </p>
+                                            <form action="/comment/" method="post">
+                                                <input type="hidden" name="postId" value="<%=post._id%>">
+                                                <p>
+                                                    <textarea rows="" cols="" name="content"></textarea>
+                                                </p>
 
-                                            <button type="">发表</button>
+                                                <button type="submit">发表</button>
+                                            </form>
                                             <%}%>
                             </div>
 
