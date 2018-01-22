@@ -8,4 +8,9 @@ module.exports = function (app) {
     app.use('/posts', require('./posts'))
     app.use('/user', require('./user'))
     app.use('/comment', require('./comment'))
+    app.use(function (req, res) {
+        if (!res.headerSent) {
+            res.status(404).render("404")
+        }
+    })
 }
