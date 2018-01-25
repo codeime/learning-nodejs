@@ -28,10 +28,10 @@ function createEnv(path, opts) {
 function templating(viewsDir, opts) {
     let pfName = module.parent.filename;
     let parentPath = pfName.substring(0, pfName.lastIndexOf(path.sep));
-    viewsDir = viewsDir || 'views';
-    viewsDir = path.join(parentPath, viewsDir);
 
-    var env = createEnv(viewsDir, opts);
+    viewsDir = path.join(parentPath, viewsDir || 'views');
+
+    let env = createEnv(viewsDir, opts);
     return async(ctx, next) => {
         ctx.render = function (view, model) {
             ctx.response.type = 'text/html';
