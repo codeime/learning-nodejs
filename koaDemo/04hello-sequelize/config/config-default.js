@@ -1,4 +1,5 @@
 let config = {
+    dialect: 'mysql',
     database: 'test',
     username: 'root',
     password: 'root',
