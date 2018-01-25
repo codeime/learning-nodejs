@@ -21,6 +21,8 @@ app.use(session({
 app.get("/", router.showIndex)
 app.get("/regist", router.showRegist)
 app.post("/regist", router.doRegist)
+app.get("/login", router.showLogin)
+app.post("/login", router.doLogin)
 
 
 app.listen(3003, function () {
