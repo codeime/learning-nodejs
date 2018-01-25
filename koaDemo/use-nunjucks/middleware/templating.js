@@ -9,7 +9,7 @@ function createEnv(path, opts) {
         watch = opts.watch || false,
         throwOnUndefined = opts.throwOnUndefined || false,
         env = new nunjucks.Environment(
-            new nunjucks.FileSystemLoader(path || 'views', {
+            new nunjucks.FileSystemLoader(path, {
                 noCache: noCache,
                 watch: watch
             }), {
@@ -25,10 +25,13 @@ function createEnv(path, opts) {
     return env;
 }
 
-function templating(src, opts) {
-    var src = path.join(__dirname, "../" + src);
-    console.log(src);
-    var env = createEnv(src, opts);
+function templating(viewsDir, opts) {
+    let pfName = module.parent.filename;
+    let parentPath = pfName.substring(0, pfName.lastIndexOf(path.sep));
+    viewsDir = viewsDir || 'views';
+    viewsDir = path.join(parentPath, viewsDir);
+
+    var env = createEnv(viewsDir, opts);
     return async(ctx, next) => {
         ctx.render = function (view, model) {
             ctx.response.type = 'text/html';
