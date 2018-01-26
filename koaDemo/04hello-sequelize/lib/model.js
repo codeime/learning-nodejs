@@ -13,6 +13,7 @@ let js_files = files.filter(f => {
     return f.endsWith('.js');
 });
 
+module.exports = {};
 
 for (let f of js_files) {
     console.log(`import model from file ${f}...`)
