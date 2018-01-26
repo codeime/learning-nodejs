@@ -3,8 +3,11 @@ const MongoClient = require('mongodb').MongoClient;
 function __connectDB(callback) {
     var url = "mongodb://localhost:27017/shuoshuo";
 
-    MongoClient.connect(url, function (err, db) {
 
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            console.log(123)
+        }
         callback(err, db);
     })
 }
@@ -21,16 +24,16 @@ module.exports.insertOne = function (collectionNmae, json, callback) {
 
 module.exports.find = function (collectionName, json, c, d) {
     if (arguments.length == 3) {
-        let callback = c;
-        let skip = 0;
-        let limit = 0;
+        var callback = c;
+        var skip = 0;
+        var limit = 0;
 
     } else if (arguments.length == 4) {
-        let callback = d;
-        let args = c;
-        let skip = args.page * args.pageSize || 0;
-        let limit = args.page || 0;
-        let sort = args.sort || {};
+        var callback = d;
+        var args = c;
+        var skip = args.page * args.pageSize || 0;
+        var limit = args.page || 0;
+        var sort = args.sort || {};
     } else {
         throw new Error("find参数错误");
         return;
