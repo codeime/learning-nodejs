@@ -6,8 +6,4 @@ var Pet = db.defineModel('pets', {
     birth: db.STRING(10),
 });
 
-module.exports = {
-    add(pet) {
-        return Pet.create(pet);
-    },
-}
+module.exports = Pet;

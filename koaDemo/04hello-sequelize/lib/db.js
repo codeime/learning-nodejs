@@ -22,7 +22,7 @@ const ID_TYPE = Sequelize.STRING(50);
 /* 每个model遵循这个规范 */
 function defineModel(name, attributes) {
     var attrs = {};
-    for (let key in attrsibutes) {
+    for (let key in attributes) {
         let value = attributes[key];
         if (typeof value === 'object' && value['type']) {
             value.allowNull = value.allowNull || false;
@@ -58,11 +58,12 @@ function defineModel(name, attributes) {
                 if (key === 'ABSTRICT' || key === 'NUMBER') {
                     continue;
                 }
-                let dbType = Sequelize[key];
+                // let dbType = Sequelize[key];
+                let dbType = Sequelize.DataTypes[key];
                 if (typeof dbType === 'function') {
                     if (v instanceof dbType) {
                         if (v._length) {
-                            return `${dbType}($v._length)`
+                            return `${dbType.key}(${v._length})`
                         }
                         return dbType.key;
                     }
@@ -106,7 +107,7 @@ var exp = {
     defineModel: defineModel,
     sync: () => {
         if (process.env.NODE_ENV !== 'production') {
-            sequelize.sync({
+            return sequelize.sync({
                 force: true
             });
         } else {

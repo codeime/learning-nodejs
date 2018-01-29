@@ -22,5 +22,5 @@ for (let f of js_files) {
 }
 
 module.exports.sync = () => {
-    db.sync();
+    return db.sync();
 };

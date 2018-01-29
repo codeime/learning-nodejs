@@ -1,3 +1,9 @@
 const model = require('./model');
-module.sync();
-console.log('init db ok');
+
+model.sync().then(() => {
+    console.log('sync done,db inited');
+    process.exit(0);
+}).catch((e) => {
+    console.log(`failed:${e}`);
+    process.exit(0);
+});
