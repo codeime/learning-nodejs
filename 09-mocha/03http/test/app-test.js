@@ -10,6 +10,7 @@ describe("#test koa app", () => {
                 .expect('Content-Type', /text\/html/)
                 .expect(200, '<h1>hello world</h1>');
         });
+
         it('#test Get /path?name=guobing', async () => {
 
             let res = await request(server)
