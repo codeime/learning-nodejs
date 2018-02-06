@@ -27,17 +27,18 @@ router.post("/upload", checkLogin, (req, res, next) => {
             'avatar': filename
         })
         .then(function (result) {
+            req.session.user.tmplimg = filename;
             res.json({
-                code: 200,
-                avatar: filename
+                "code": 200
             })
         })
         .catch(next)
 
 })
-router.get("/cut/:filename", checkLogin, (req, res, next) => {
+router.get("/cut", checkLogin, (req, res, next) => {
+
     res.render("cut", {
-        filename: req.params['filename']
+        "filename": req.session.user.tmplimg
     });
 })
 router.post("/cut", checkLogin, (req, res, next) => {
