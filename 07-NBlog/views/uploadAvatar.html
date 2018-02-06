@@ -36,6 +36,7 @@
 
                         timeout: 30000, //请求超时时间
                         successFunc: function (res) {
+                            console.log(res);
                             location.href = '/user/cut/' + res.avatar;
                         }, //上传成功回调函数
                         errorFunc: function (res) {
