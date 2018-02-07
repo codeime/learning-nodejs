@@ -39,7 +39,7 @@ router.post('/', checkNotLogin, (req, res, next) => {
         }
     } catch (err) {
         console.log(err.message);
-        fs.unlink(req.files.file.path);
+        // fs.unlink(req.files.file.path);
         req.flash('error', err.message);
         return res.redirect('/signup')
     }
