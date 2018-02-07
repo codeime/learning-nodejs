@@ -58,10 +58,10 @@ app.use((req, res, next) => {
 /* 正常请求的日志 */
 app.use(expressWinston.logger({
     transports: [
-        new(winston.transports.Console)({
-            json: true,
-            colorize: true
-        }),
+        // new(winston.transports.Console)({
+        //     json: true,
+        //     colorize: true
+        // }),
         new winston.transports.File({
             filename: 'logs/success.log'
         })
@@ -74,10 +74,10 @@ routes(app);
 /* 错误请求的日志 */
 app.use(expressWinston.errorLogger({
     transports: [
-        new(winston.transports.Console)({
-            json: true,
-            colorize: true
-        }),
+        // new(winston.transports.Console)({
+        //     json: true,
+        //     colorize: true
+        // }),
         new winston.transports.File({
             filename: 'logs/error.log'
         })
@@ -85,7 +85,7 @@ app.use(expressWinston.errorLogger({
 }))
 
 app.use(function (err, req, res, next) {
-    console.log(err);
+    console.log(err + "..............................................................");
     req.flash('error', err.message);
     res.redirect('/posts');
 })

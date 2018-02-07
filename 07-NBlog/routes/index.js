@@ -9,7 +9,7 @@ module.exports = function (app) {
     app.use('/user', require('./user'))
     app.use('/comment', require('./comment'))
     app.use(function (req, res) {
-        if (!res.headerSent) {
+        if (!res.headersSent) {
             res.status(404).render("404")
         }
     })
