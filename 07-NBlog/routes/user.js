@@ -53,7 +53,6 @@ router.post("/cut", checkLogin, (req, res, next) => {
         .resize(100, 100, '!')
         .write(file, function (err) {
             if (err) {
-                console.log(err);
                 return next(err);
             }
 
