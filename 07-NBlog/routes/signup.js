@@ -48,6 +48,7 @@ router.post('/', checkNotLogin, (req, res, next) => {
         password: sha1(psd1),
         gender: gender,
         bio: bio,
+        avatar:"moren.png"
     }
 
     UserModel.create(user)
