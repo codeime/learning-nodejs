@@ -31,7 +31,7 @@ exports.User = mongolass.model('User', {
     },
     avatar: {
         type: 'string',
-        default: 'moren.png'
+
     },
     gender: {
         type: 'string',
