@@ -13,7 +13,6 @@
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.3.0",
     "mime": "^2.2.0",
-    "mysql": "^2.15.0",
     "mysql2": "^1.5.1",
     "mz": "^2.7.0",
     "nunjucks": "^3.0.1",

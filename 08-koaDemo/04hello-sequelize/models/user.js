@@ -1,13 +1,14 @@
 const db = require('../lib/db');
+const dbtypes = require('../lib/dbtypes');
 
 let User = db.defineModel("user", {
     email: {
-        type: db.STRING(100),
+        type: dbtypes.STRING(100),
         unique: true
     },
-    password: db.STRING(100),
-    name: db.STRING(50),
-    gender: db.BOOLEAN,
+    password: dbtypes.STRING(100),
+    name: dbtypes.STRING(50),
+    gender: dbtypes.BOOLEAN,
 
 });
 

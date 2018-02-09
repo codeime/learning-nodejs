@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const uuidv4 = require('uuid/v4')
 const config = require('../config/config');
+const dbtypes = require('./dbtypes');
 
 function generateId() {
     return uuidv4();
@@ -9,6 +10,7 @@ function generateId() {
 
 let sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
+    port: config.port,
     dialect: config.dialect,
     pool: {
         max: 5,
@@ -18,37 +20,45 @@ let sequelize = new Sequelize(config.database, config.username, config.password,
 
 });
 
-const ID_TYPE = Sequelize.STRING(50);
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('-------------------------------------Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('-------------------------------------Unable to connect to the database:', err);
+    });
+
+
 /* 每个model遵循这个规范 */
 function defineModel(name, attributes) {
-    var attrs = {};
+    var attrs = {
+        id: {
+            type: dbtypes.ID,
+            primaryKey: true
+        }
+    };
+
     for (let key in attributes) {
-        let value = attributes[key];
-        if (typeof value === 'object' && value['type']) {
-            value.allowNull = value.allowNull || false;
-            attrs[key] = value;
-        } else {
-            attrs[key] = {
-                type: value,
-                allowNull: false
-            }
+
+        if (attributes.hasOwnProperty(key)) {
+            let opt = attributes[key];
+            opt.allowNull = opt.allowNull || false;
+            attrs[key] = opt;
         }
     }
 
-    attrs.id = {
-        type: ID_TYPE,
-        primaryKey: true
-    };
+
     attrs.createdAt = {
-        type: Sequelize.BIGINT,
+        type: dbtypes.BIGINT,
         allowNull: false
     };
     attrs.updatedAt = {
-        type: Sequelize.BIGINT,
+        type: dbtypes.BIGINT,
         allowNull: false
     };
     attrs.version = {
-        type: Sequelize.BIGINT,
+        type: dbtypes.BIGINT,
         allowNull: false
     };
 
@@ -75,7 +85,7 @@ function defineModel(name, attributes) {
         }
         return v;
     }, ' '));
-    return sequelize.define(name, attrs, {
+    let options = {
         tableName: name,
         timestamps: false,
         hooks: {
@@ -97,11 +107,12 @@ function defineModel(name, attributes) {
                 }
             }
         }
-    });
+    };
+    return sequelize.define(name, attrs, options);
 
 }
 
-const TYPES = ['STRING', 'INTEGER', 'BIGINT', 'TEXT', 'DOUBLE', 'DATEONLY', 'BOOLEAN'];
+
 
 var exp = {
     defineModel: defineModel,
@@ -115,11 +126,7 @@ var exp = {
         }
     }
 }
-for (let type of TYPES) {
-    exp[type] = Sequelize[type];
 
-}
-exp.ID = ID_TYPE;
 exp.generateId = generateId;
 
 module.exports = exp;

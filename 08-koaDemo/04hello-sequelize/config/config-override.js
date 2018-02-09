@@ -1,8 +1,9 @@
 let config = {
-    database: 'production',
+    database: 'test',
     username: 'root',
-    password: 'xxxxxxxx',
-    host: 'xxx.xxx.x.x',
+    password: 'root',
+    host: 'localhost',
+    port: "3306"
 
 }
 module.exports = config;

@@ -18,9 +18,8 @@ module.exports = {};
 for (let f of js_files) {
     console.log(`import model from file ${f}...`)
     let name = f.substring(0, f.length - 3);
+
     module.exports[name] = require(modelPath + "/" + f);
 }
 
-module.exports.sync = () => {
-    return db.sync();
-};
+module.exports.sync = () => db.sync();
