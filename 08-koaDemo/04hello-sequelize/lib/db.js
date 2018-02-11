@@ -20,14 +20,7 @@ let sequelize = new Sequelize(config.database, config.username, config.password,
 
 });
 
-sequelize
-    .authenticate()
-    .then(() => {
-        console.log('-------------------------------------Connection has been established successfully.');
-    })
-    .catch(err => {
-        console.error('-------------------------------------Unable to connect to the database:', err);
-    });
+
 
 
 /* 每个model遵循这个规范 */
