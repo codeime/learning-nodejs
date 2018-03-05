@@ -10,7 +10,7 @@ const app = new koa();
 const isProduction = process.env.NODE_ENV === 'production';
 
 /* 记录执行时间 */
-app.use(async(ctx, next) => {
+app.use(async (ctx, next) => {
     const start = new Date().getTime();
     await next();
     const ms = new Date().getTime() - start;
