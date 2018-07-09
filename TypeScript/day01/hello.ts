@@ -4,3 +4,8 @@ function sayHello(person: string) {
 
 let user = 'Tom';
 console.log(sayHello(user));
+export class hello {
+    constructor(parameters) {
+
+    }
+}
